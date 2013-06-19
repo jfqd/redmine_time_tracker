@@ -1,0 +1,26 @@
+<% if User.current.logged? %>
+  <%= javascript_tag do -%>
+
+function PeriodicalExecuter(time) {
+  updateTimeTrackerMenu();
+  setTimeout('PeriodicalExecuter('+time+');', time);
+}
+function updateTimeTrackerMenu() {
+  <%= remote_function(
+    :url => {
+      :controller => '/time_trackers',
+      :action     => 'render_menu',
+      :project_id => (@project.nil? ? nil : @project.id), :issue_id => (@issue.nil? ? nil : @issue.id)
+    },
+    :success => "updateElementIfChanged('time-tracker-menu',data);") %>
+}
+
+$(function() {
+  $('#time-tracker-menu').html(
+    '<%= raw(((render :partial => 'time_trackers/embed_menu').delete("\n")).strip) %>'
+  );
+  PeriodicalExecuter(<%= (Setting.plugin_redmine_time_tracker['refresh_rate'].to_i == 0 ? 300000 : Setting.plugin_redmine_time_tracker['refresh_rate'].to_i * 1000) %>);
+});
+
+  <% end -%>
+<% end -%>

@@ -1,12 +1,12 @@
-ActionController::Routing::Routes.draw do |map|
-  map.connect '/time_trackers/stop', :controller => 'time_trackers', :action => 'stop'
-  map.connect '/time_trackers/start', :controller => 'time_trackers', :action => 'start'
-  map.connect '/time_trackers/suspend', :controller => 'time_trackers', :action => 'suspend'
-  map.connect '/time_trackers/resume', :controller => 'time_trackers', :action => 'resume'
-  map.connect '/time_trackers/render_menu', :controller => 'time_trackers', :action => 'render_menu'
-  map.connect '/time_trackers/add_status_transition', :controller => 'time_trackers', :action => 'add_status_transition'
-  map.connect '/time_trackers/delete_status_transition', :controller => 'time_trackers', :action => 'delete_status_transition'
-  map.connect '/time_trackers/show_report', :controller => 'time_trackers', :action => 'show_report'
-  map.connect '/time_trackers/delete', :controller => 'time_trackers', :action => 'delete'
-  map.connect '/time_trackers', :controller => 'time_trackers', :action => 'index'
+RedmineApp::Application.routes.draw do
+  match 'time_trackers/stop' => 'time_trackers#stop'
+  match 'time_trackers/start' => 'time_trackers#start'
+  match 'time_trackers/suspend' => 'time_trackers#suspend'
+  match 'time_trackers/resume' => 'time_trackers#resume'
+  match 'time_trackers/render_menu' => 'time_trackers#render_menu'
+  match 'time_trackers/add_status_transition' => 'time_trackers#add_status_transition'
+  match 'time_trackers/delete_status_transition' => 'time_trackers#delete_status_transition'
+  match 'time_trackers/show_report' => 'time_trackers#show_report'
+  match 'time_trackers/delete' => 'time_trackers#delete'
+  match 'time_trackers' => 'time_trackers#index'
 end
