@@ -10,7 +10,7 @@
     <%= link_to_remote "",
       :url => { :controller => "/time_trackers", :action => "resume" },
       :html => { :class => "icon-action icon-start-action", :title => l(:resume_time_tracker) },
-      :update => "time-tracker-menu"
+      :success => "updateElementIfChanged('time-tracker-menu',data);"
     %>
     <%= link_to "",
       { :controller => "/time_trackers", :action => "stop" },
@@ -26,7 +26,7 @@
     <%= link_to_remote "",
       :url => { :controller => "/time_trackers", :action => "suspend" },
       :html => { :class => "icon-action icon-pause-action", :title => l(:suspend_time_tracker) },
-      :update => "time-tracker-menu"
+      :success => "updateElementIfChanged('time-tracker-menu',data);"
     %>
     <%= link_to "",
       { :controller => "/time_trackers", :action => "stop" },
@@ -39,7 +39,7 @@
   <%= link_to_remote l(:start_time_tracker) + " #" + @issue.id.to_s,
     :url => { :controller => "/time_trackers", :action => "start", :issue_id => @issue.id },
     :html => { :class => "icon icon-start" },
-    :update => "time-tracker-menu"
+    :success => "updateElementIfChanged('time-tracker-menu',data);"
   %>
 <% elsif global_allowed_to?(User.current, :log_time) %>
   <%# No time tracker is running but the user has the rights to track time on a project %>

@@ -6,7 +6,7 @@
     <%= link_to_remote l(:resume_time_tracker).capitalize + ' #' + time_tracker.issue_id.to_s,
       :url => { :controller => '/time_trackers', :action => 'resume' },
       :html => { :class => 'icon icon-start' },
-      :update => 'time-tracker-menu'
+      :success => "updateElementIfChanged('time-tracker-menu',data);"
     %>
     </li>
   <% else %>
@@ -15,7 +15,7 @@
     <%= link_to_remote l(:suspend_time_tracker).capitalize + ' #' + time_tracker.issue_id.to_s,
       :url => { :controller => '/time_trackers', :action => 'suspend' },
       :html => { :class => 'icon icon-pause' },
-      :update => 'time-tracker-menu'
+      :success => "updateElementIfChanged('time-tracker-menu',data);"
     %>
     </li>
   <% end %>
@@ -32,7 +32,7 @@
     <%= link_to_remote l(:start_time_tracker).capitalize + ' #' + @issue.id.to_s,
       :url    => { :controller => '/time_trackers', :action => 'start', :issue_id => @issue.id },
       :html   => { :class => 'icon icon-start' },
-      :update => 'time-tracker-menu'
+      :success => "updateElementIfChanged('time-tracker-menu',data);"
     %>
   </li>
 <% end %>

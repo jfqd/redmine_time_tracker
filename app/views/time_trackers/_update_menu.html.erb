@@ -10,7 +10,8 @@ function updateTimeTrackerMenu() {
     :url => {
       :controller => '/time_trackers',
       :action     => 'render_menu',
-      :project_id => (@project.nil? ? nil : @project.id), :issue_id => (@issue.nil? ? nil : @issue.id)
+      :project_id => @project.try(:id),
+      :issue_id   => @issue.try(:id)
     },
     :success => "updateElementIfChanged('time-tracker-menu',data);") %>
 }
